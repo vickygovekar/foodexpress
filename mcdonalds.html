@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>McDonald's | Food Delivery</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        nav { background-color: #2a3f40; }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="setting.html">Setting</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>McDonald's Menu</h1>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Big Mac</h3>
+                <p>Double Layer of Flavor</p>
+                <p>₹199</p>
+            </div>
+            <img src="bigmac.jpg" alt="Big Mac">
+            <button onclick="addToCart('Big Mac', 199)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>McChicken</h3>
+                <p>Crispy Chicken Sandwich</p>
+                <p>₹249</p>
+            </div>
+            <img src="mcchicken.jpg" alt="McChicken">
+            <button onclick="addToCart('McChicken', 249)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Veggie Burger</h3>
+                <p>Fresh & Tasty Veggie Delight</p>
+                <p>₹229</p>
+            </div>
+            <img src="veggieburger.jpg" alt="Veggie Burger">
+            <button onclick="addToCart('Veggie Burger', 229)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>McFizz</h3>
+                <p>Refreshing Sparkling Drink</p>
+                <p>₹50</p>
+            </div>
+            <img src="mcfizz.jpg" alt="McFizz">
+            <button onclick="addToCart('McFizz', 50)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Shakes</h3>
+                <p>Thick & Creamy Shake</p>
+                <p>₹100</p>
+            </div>
+            <img src="shakes.jpg" alt="Shakes">
+            <button onclick="addToCart('Shakes', 100)">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(itemName, itemPrice) {
+            const payload = { name: itemName, price: itemPrice, quantity: 1 };
+            console.log("Payload to send:", payload);
+
+            fetch('process_order.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Response from server:", data);
+                if (data.success) {
+                    alert(data.message);
+                } else {
+                    if (data.message.includes("User not logged in")) {
+                        window.location.href = 'login1.php';
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred while adding the item to cart.");
+            });
+        }
+    </script>
+</body>
+</html>

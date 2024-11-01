@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Settings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b8d4f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #2a3f40;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Logo */
+        .logo {
+            position: absolute;
+            top: 5px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        nav .auth-buttons {
+            float: right;
+            margin-right: 30px;
+        }
+
+        nav .auth-buttons button {
+            margin-left: 10px;
+            background-color: #fff;
+            color: #ff4d4d;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Settings Container */
+        .settings-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        .settings-container h2 {
+            text-align: center;
+            color: #2a3f40;
+            margin-bottom: 30px;
+        }
+
+        .settings-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #2a3f40;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .settings-button:hover {
+            background-color: #3a5456;
+        }
+
+        .delete-button {
+            background-color: #ff4d4d;
+        }
+
+        .delete-button:hover {
+            background-color: #ff3333;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <img src="food.jpg" alt="Food Express Logo">
+            <h1>Food Express</h1>
+        </div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="setting.html">Settings</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <button onclick="window.location.href='login.html'">Login</button>
+            <button onclick="window.location.href='signup.html'">Sign Up</button>
+        </div>
+    </nav>
+
+    <!-- Settings Content -->
+    <div class="settings-container">
+        <h2>User Settings</h2>
+        <button class="settings-button" onclick="location.href='edit.php'">Edit Profile</button>
+        <button class="settings-button delete-button" onclick="location.href='delete.php'">Delete Account</button>
+        <button class="settings-button" onclick="location.href='logout.php'">Logout</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Domino's | Food Delivery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="setting.html">setting</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Domino's Menu</h1>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Margherita Pizza</h3>
+                <p>Classic Cheese Pizza</p>
+                <p>₹199</p>
+            </div>
+            <img src="marggerita.jpg" alt="Margherita Pizza">
+            <button onclick="addToCart('Margherita Pizza', 199)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Pepperoni Pizza</h3>
+                <p>Loaded with Pepperoni</p>
+                <p>₹249</p>
+            </div>
+            <img src="pepporina.jpg" alt="Pepperoni Pizza">
+            <button onclick="addToCart('Pepperoni Pizza', 249)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Veggie Supreme Pizza</h3>
+                <p>Loaded with fresh vegetables</p>
+                <p>₹229</p>
+            </div>
+            <img src="veggie.jpg" alt="Veggie Supreme Pizza">
+            <button onclick="addToCart('Veggie Supreme Pizza', 229)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Coke</h3>
+                <p>Chilled Cold Drink</p>
+                <p>₹50</p>
+            </div>
+            <img src="co.jpg" alt="Coke">
+            <button onclick="addToCart('Coke', 50)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Sprite</h3>
+                <p>Refreshing Lemon-Lime Drink</p>
+                <p>₹50</p>
+            </div>
+            <img src="sprites.jpg" alt="Sprite">
+            <button onclick="addToCart('Sprite', 50)">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(itemName, itemPrice) {
+            const payload = { name: itemName, price: itemPrice, quantity: 1 };
+            console.log("Payload to send:", payload);
+
+            fetch('process_order.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Response from server:", data);
+                if (data.success) {
+                    alert(data.message);
+                } else {
+                    if (data.message.includes("User not logged in")) {
+                        window.location.href = 'login1.php';
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred while adding the item to cart.");
+            });
+        }
+    </script>
+</body>
+</html>

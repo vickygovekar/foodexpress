@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b8d4f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #2a3f40;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-summary {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2a3f40;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .payment-method {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .confirm-btn {
+            background-color: #2a3f40;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        .confirm-btn:hover {
+            background-color: #3a5456;
+        }
+
+        .total-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2a3f40;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="setting.html">setting</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Checkout</h1>
+        
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div id="cart-items">
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="total-amount">
+                Total: ₹<span id="total-price">0</span>
+            </div>
+        </div>
+
+        <form action="delete_cart.php" method="POST" id="checkout-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Delivery Address</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
+
+            <div class="payment-method">
+                <h3>Payment Method</h3>
+                <p><strong>Cash on Delivery</strong></p>
+            </div>
+
+            <button type="submit" class="confirm-btn">Confirm Order</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('checkout-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+        
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                order_items: [
+                    { name: 'Item 1', price: 100, quantity: 2 }, // Example items
+                    { name: 'Item 2', price: 150, quantity: 1 }
+                ]
+            };
+        
+            // Validate form data
+            if (!formData.name || !formData.phone || !formData.address) {
+                alert('Please fill in all fields');
+                return;
+            }
+        
+            // Phone number validation
+            if (!/^\d{10}$/.test(formData.phone)) {
+                alert('Please enter a valid 10-digit phone number');
+                return;
+            }
+        
+            // Simulate order processing
+            const total_price = formData.order_items.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const order_id = 'ORD-' + Math.floor(Math.random() * 1000000); // Generate a random order ID
+        
+            // Store order details in local storage
+            localStorage.setItem('order_items', JSON.stringify(formData.order_items));
+            localStorage.setItem('total_price', total_price);
+            
+            // Redirect to order confirmation page
+           window.location.href = 'delete_cart.php?order_id=' + order_id;
+        });
+        </script>
+</body>
+</html>

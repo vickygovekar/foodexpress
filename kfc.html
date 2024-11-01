@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>KFC | Food Delivery</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .item button { background-color: #ff4d4d; }
+        .item button:hover { background-color: #e43a3a; }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="setting.html">setting</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>KFC Menu</h1>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Original Recipe Chicken</h3>
+                <p>Signature fried chicken</p>
+                <p>₹299</p>
+            </div>
+            <img src="og chicken.jpg" alt="Original Recipe Chicken">
+            <button onclick="addToCart('Original Recipe Chicken', 299)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Hot Wings</h3>
+                <p>Spicy chicken wings</p>
+                <p>₹199</p>
+            </div>
+            <img src="hot.jpg" alt="Hot Wings">
+            <button onclick="addToCart('Hot Wings', 199)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Popcorn Chicken</h3>
+                <p>Crispy popcorn chicken bites</p>
+                <p>₹249</p>
+            </div>
+            <img src="pop.jpg" alt="Popcorn Chicken">
+            <button onclick="addToCart('Popcorn Chicken', 249)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>French Fries</h3>
+                <p>Crispy and golden fries</p>
+                <p>₹80</p>
+            </div>
+            <img src="french.jpg" alt="French Fries">
+            <button onclick="addToCart('French Fries', 80)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <div class="item-info">
+                <h3>Coleslaw</h3>
+                <p>Freshly made coleslaw</p>
+                <p>₹90</p>
+            </div>
+            <img src="cole.jpg" alt="Coleslaw">
+            <button onclick="addToCart('Coleslaw', 90)">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(itemName, itemPrice) {
+            const payload = { name: itemName, price: itemPrice, quantity: 1 };
+            console.log("Payload to send:", payload);
+
+            fetch('process_order.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Response from server:", data);
+                if (data.success) {
+                    alert(data.message);
+                } else {
+                    if (data.message.includes("User  not logged in")) {
+                        window.location.href = 'login1.php';
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("An error occurred while adding the item to cart.");
+            });
+        }
+    </script>
+</body>
+</html>

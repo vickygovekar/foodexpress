@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Food Delivery | Homepage</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #b8d4f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #2a3f40;
+            padding: 10px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Logo */
+        .logo {
+            position: absolute;
+            top: 5px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        nav .auth-buttons {
+            float: right;
+            margin-right: 30px;
+        }
+
+        nav .auth-buttons button {
+            margin-left: 10px;
+            background-color: #fff;
+            color: #ff4d4d;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            
+            background-image: url('img/hero-bg.jpg'); /* Update with your background image path */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+
+        /* Food Categories */
+        .food-categories {
+            display: flex;
+            justify-content: space-around;
+            margin: 50px 0;
+            padding: 0 20px;
+        }
+
+        .food-category {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .food-category img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .food-category p {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* Restaurant Chain Cards */
+        .restaurant-chains {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Adjust to show 3 cards per row */
+            gap: 20px;
+            margin: 50px 20px;
+        }
+
+        .restaurant-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .restaurant-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .restaurant-card .card-content {
+            padding: 15px;
+        }
+
+        .restaurant-card .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .restaurant-card .card-details {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .restaurant-card .offer {
+            font-size: 14px;
+            font-weight: 500;
+            color: #ff5722;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <img src="food.jpg" alt="Food Express Logo"> <!-- Placeholder for your logo -->
+            <h1>Food Express</h1>
+        </div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="cart.html">Cart</a></li> <!-- Cart section -->
+            <li><a href="setting.html">Settings</a></li> <!-- Profile section -->
+        </ul>
+        <div class="auth-buttons">
+            <button onclick="window.location.href='login.html'">Login</button>
+            <button onclick="window.location.href='signup.html'">Sign Up</button>
+        </div>
+    </nav>
+
+     <!-- Hero Section -->
+     <section class="hero">
+        <div>
+            <h1>Delicious Food Delivered To You</h1>
+        
+            <marquee><b>Discover the best foods from your favorite restaurants</b></marquee>
+        </div>
+    </section>
+
+    <!-- Food Categories Section -->
+    <section class="food-categories">
+        <div class="food-category">
+            <img src="biryani.jpg" alt="Biryani">
+            <p>Biryani</p>
+        </div>
+        <div class="food-category">
+            <img src="paratha.jpg" alt="Paratha">
+            <p>Paratha</p>
+        </div>
+        <div class="food-category">
+            <img src="pizza.jpg" alt="Pizza">
+            <p>Pizza</p>
+        </div>
+        <div class="food-category">
+            <img src="noodles.jpg" alt="Noodles">
+            <p>Noodles</p>
+        </div>
+    </section>
+
+    <!-- Restaurant Chain Cards Section -->
+    <section class="restaurant-chains">
+        <div class="restaurant-card">
+            <a href="dominos.html">
+                <img src="dominoz.jpg" alt="Domino's Pizza">
+            </a>
+            <li><a href="dominos.html"></a></li>
+    
+           <div class="card-content">
+                <h3 class="card-title">Domino's Pizza</h3>
+                <p class="card-details">Pizza, Fast Food | 30-35 mins</p>
+                <p class="offer">₹100 OFF ABOVE ₹399</p>
+            </div>
+        </div>
+        <div class="restaurant-card">
+            <a href="mcdonalds.html">
+                <img src="mcdonalds.jpg" alt="Domino's Pizza">
+            </a>
+            <li><a href="mcdonalds.html"></a></li>
+            <div class="card-content">
+                <h3 class="card-title">McDonald's</h3>
+                <p class="card-details">Burgers, Fast Food | 25-30 mins</p>
+                <p class="offer">Free Fries on Orders Above ₹299</p>
+            </div>
+        </div>
+        <div class="restaurant-card">
+            <a href="kfc.html">
+                <img src="kfc.jpg" alt="Domino's Pizza">
+            </a>
+            <li><a href="kfc.html"></a></li>
+            <div class="card-content">
+                <h3 class="card-title">KFC</h3>
+                <p class="card-details">Chicken, Fast Food | 35-40 mins</p>
+                <p class="offer">₹150 OFF ABOVE ₹499</p>
+            </div>
+        </div>
+        <div class="restaurant-card">
+            <img src="pizza hut.jpg" alt="Pizza Hut">
+            <div class="card-content">
+                <h3 class="card-title">Pizza Hut</h3>
+                <p class="card-details">Pizza, Italian | 20-25 mins</p>
+                <p class="offer">₹100 OFF ABOVE ₹349</p>
+            </div>
+        </div>
+        <div class="restaurant-card">
+            <img src="burgerking.jpg" alt="Burger King">
+            <div class="card-content">
+                <h3 class="card-title">Burger King</h3>
+                <p class="card-details">Burgers, Fast Food | 25-30 mins</p>
+                <p class="offer">Free Drink with Combo Meals</p>
+            </div>
+        </div>
+        <div class="restaurant-card">
+            <img src="subway.jpg" alt="Subway">
+            <div class="card-content">
+                <h3 class="card-title">Subway</h3>
+                <p class="card-details">Sandwiches, Healthy | 20-25 mins</p>
+                <p class="offer">₹50 OFF ABOVE ₹249</p>
+            </div>
+        </div>
+        <div class="restaurant-card">
+            <img src="starbucks.jpg" alt="Starbucks">
+            <div class="card-content">
+                <h3 class="card-title">Starbucks</h3>
+                <p class="card-details">Coffee, Beverages | 15-20 mins</p>
+                <p class="offer">Buy 1 Get 1 Free</p>
+            </div>
+        </div>
+        <div class="restaurant-card">
+            <img src="dunkins.jpg" alt="Dunkin' Donuts">
+            <div class="card-content">
+                <h3 class="card-title">Dunkin' Donuts</h3>
+                <p class="card-details">Donuts, Coffee | 15-20 mins</p>
+                <p class="offer">Free Donut on Orders Above ₹199</p>
+            </div>
+        </div>
+        <div class="restaurant-card">
+            <img src="haldirams.jpg" alt="Haldiram's">
+            <div class="card-content">
+                <h3 class="card-title">Haldiram's</h3>
+                <p class="card-details">Indian, Sweets | 40-45 mins</p>
+                <p class="offer">₹100 OFF ABOVE ₹299</p>
+            </div>
+        </div>
+        <div class="restaurant-card">
+            <img src="baristas.jpg" alt="Barista">
+            <div class="card-content">
+                <h3 class="card-title">Barista</h3>
+                <p class="card-details">Coffee, Snacks | 15-20 mins</p>
+                <p class="offer">Free Beverage on Orders Above ₹299</p>
+            </div>
+        </div>
+    </section>    
+
+</body>
+
+</html>
