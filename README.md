@@ -1,7 +1,3 @@
-# foodexpress
-Here’s an updated README that reflects the use of `settings.html` in place of `profile.html`:
-
----
 
 # Food Express
 
